@@ -7,15 +7,15 @@ import App from "./App";
 import { AuthProvider } from "./auth";
 import "./index.css";
 
-// 主色取自楼宇门牌的深松绿，避免默认蓝色后台的模板感
+// 经典后台配色：深蓝灰侧栏 + 青绿主色 + 浅灰蓝内容区
 const theme: ThemeConfig = {
   token: {
-    colorPrimary: "#1e4d3b",
-    borderRadius: 4,
+    colorPrimary: "#26a69a",
+    borderRadius: 6,
     fontFamily: "'Noto Sans SC', 'IBM Plex Sans', system-ui, sans-serif",
-    colorBgLayout: "#f3f2ee",
+    colorBgLayout: "#f0f2f5",
   },
-  components: { Layout: { siderBg: "#16302a", headerBg: "#ffffff" } },
+  components: { Layout: { siderBg: "#304156", headerBg: "#ffffff" } },
 };
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

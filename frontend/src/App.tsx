@@ -4,7 +4,8 @@ import { Button, Card, Form, Input, Layout, Menu, Space, Spin, Typography, messa
 import type { MenuProps } from "antd";
 import { errMsg } from "./api";
 import { useAuth } from "./auth";
-import { Bills, Dashboard, Owners, Repairs, Rooms } from "./pages";
+import { Bills, Owners, Repairs, Rooms } from "./pages";
+import { Dashboard } from "./pages_dashboard";
 import { Buildings, Community, FamilyMembers, ParkingSpaces } from "./pages_archive";
 import { FeeItems, Payments } from "./pages_fee";
 import { Announcements, Complaints, Visitors } from "./pages_service";

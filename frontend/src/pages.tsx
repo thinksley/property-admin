@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
-import { Button, Card, Col, Form, Input, InputNumber, Modal, Popconfirm, Rate, Row, Select,
-  Space, Spin, Statistic, Switch, Table, Tag, Typography, message } from "antd";
+import { Button, Form, Input, InputNumber, Modal, Popconfirm, Rate, Select,
+  Space, Switch, Table, Tag, Typography, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { BILL_STATUS, FEE, HANDOVER_STATUS, REPAIR_STATUS, ROOM_STATUS, api, download,
   errMsg, yuan, type Bill, type Building, type FeeItem, type Owner, type Repair,
-  type ReportOverview, type Room, type Unit } from "./api";
+  type Room, type Unit } from "./api";
 import { useAuth } from "./auth";
 
 const currentPeriod = () => {
@@ -42,33 +42,6 @@ export function Page({ title, extra, children }: { title: string; extra?: ReactN
       </div>
       {children}
     </>
-  );
-}
-
-export function Dashboard() {
-  const [s, setS] = useState<ReportOverview | null>(null);
-  useEffect(() => {
-    api.get<ReportOverview>("/reports/overview").then((r) => setS(r.data))
-      .catch((e) => message.error(errMsg(e)));
-  }, []);
-  if (!s) return <Spin />;
-  return (
-    <Page title={`${s.period} 运营概况`}>
-      <Row gutter={[16, 16]}>
-        <Col xs={12} lg={6}><Card><Statistic title="房屋总数" value={s.rooms} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="在用房屋" value={s.occupied} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="本期应收" value={yuan(s.receivable_cents)} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="本期已收" value={yuan(s.collected_cents)} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="欠费金额" value={yuan(s.arrears_cents)} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="未结清账单" value={s.arrears_count} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="待处理报修" value={s.open_repairs} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="待处理投诉" value={s.open_complaints} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="今日访客" value={s.visitors_today} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="今日巡检打卡" value={s.inspections_today} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="库存预警物料" value={s.low_stock} /></Card></Col>
-        <Col xs={12} lg={6}><Card><Statistic title="设施异常" value={s.facility_alerts} /></Card></Col>
-      </Row>
-    </Page>
   );
 }
 

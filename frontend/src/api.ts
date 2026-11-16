@@ -196,6 +196,10 @@ export interface Revenue {
     paid_cents: number; late_fee_cents: number }[];
   by_method: { method: string; count: number; amount_cents: number }[];
 }
+export interface TrendPoint {
+  period: string; receivable_cents: number; collected_cents: number;
+  arrears_cents: number; bill_count: number;
+}
 export interface IncomeExpense {
   period: string; income_cents: number; expense_cents: number; net_cents: number;
   payment_count: number; purchase_count: number;

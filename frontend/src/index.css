@@ -1,8 +1,26 @@
-body { margin: 0; background: #f3f2ee; color: #1d2521; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #f0f2f5; color: #303133; -webkit-font-smoothing: antialiased; }
 .brand { color: #fff; font-weight: 600; letter-spacing: 0.08em; padding: 20px 24px; font-size: 16px; }
-.ant-layout-sider .ant-menu { background: transparent; }
-.topbar { background: #fff; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid #e2e0d8; }
+.ant-layout-sider .ant-menu { background: transparent; border-inline-end: none !important; }
+.ant-layout-sider .ant-menu-dark .ant-menu-item-selected { background: #26a69a; }
+.topbar { background: #fff; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid #e8eaec; }
 .content { padding: 24px; }
 .toolbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
-.login { min-height: 100vh; display: grid; place-items: center; background: #16302a; }
+.login { min-height: 100vh; display: grid; place-items: center; background: linear-gradient(160deg, #34495e 0%, #304156 60%, #263445 100%); }
 .ant-table { font-variant-numeric: tabular-nums; }
+.kpi-card .ant-card-body { padding: 20px; }
+.kpi-body { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.kpi-title { color: #8c8c8c; font-size: 13px; }
+.kpi-value { font-size: 26px; font-weight: 600; color: #262626; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.kpi-extra { color: #bfbfbf; font-size: 12px; margin-top: 6px; }
+.kpi-icon { font-size: 24px; width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0; }
+.chart-empty { height: 300px; display: grid; place-items: center; color: #bfbfbf; }
+/* 同一行的卡片等高对齐 */
+.dashboard-row { align-items: stretch; }
+.dashboard-row > .ant-col { display: flex; }
+.dashboard-row > .ant-col > .ant-card,
+.dashboard-row > .ant-col > .kpi-card { flex: 1; width: 100%; display: flex; flex-direction: column; }
+.dashboard-row .ant-card-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+.kpi-body { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.kpi-card .kpi-body { align-items: center; }
+.todo-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: #fafafa; border-radius: 6px; }
+.todo-item span { flex: 1; }

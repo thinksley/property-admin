@@ -44,6 +44,36 @@ def overview(period: Optional[str] = None, _=Depends(require("report:read")),
     }
 
 
+@router.get("/reports/trend")
+def trend(months: int = 6, _=Depends(require("report:read")), db: Session = Depends(get_db)):
+    """近 N 个月应收/实收/欠费趋势，用于总览图表"""
+    months = max(1, min(months, 12))
+    now = datetime.now()
+    periods = []
+    year, month = now.year, now.month
+    for _ in range(months):
+        periods.append(f"{year:04d}-{month:02d}")
+        month -= 1
+        if month == 0:
+            month = 12
+            year -= 1
+    periods.reverse()
+    bills = db.query(m.Bill).filter(m.Bill.period.in_(periods)).all()
+    result = []
+    for p in periods:
+        rows = [b for b in bills if b.period == p]
+        receivable = sum(b.amount_cents + b.late_fee_cents for b in rows)
+        collected = sum(b.paid_cents for b in rows)
+        result.append({
+            "period": p,
+            "receivable_cents": receivable,
+            "collected_cents": collected,
+            "arrears_cents": receivable - collected,
+            "bill_count": len(rows),
+        })
+    return result
+
+
 @router.get("/reports/revenue")
 def revenue(period: Optional[str] = None, _=Depends(require("report:read")),
             db: Session = Depends(get_db)):
